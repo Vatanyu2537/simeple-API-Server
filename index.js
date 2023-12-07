@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 3000;  // ใช้ PORT จาก environment หากมี หรือใช้ 3000 ถ้าไม่มี
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.send('Hello, World!');
 });
 
 app.listen(port, () => {
