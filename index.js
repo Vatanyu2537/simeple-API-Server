@@ -4,6 +4,7 @@ const port = process.env.PORT || 3000;  // ใช้ PORT จาก environment 
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
+  res.send('Hello, World!');
 });
 
 app.listen(port, () => {
