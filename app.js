@@ -95,32 +95,32 @@ app.post("/register", jsonParser, function (req, res, next) {
 //--------------------------------------------------------------------------------
 // create API login
 //--------------------------------------------------------------------------------
-app.post("/login", jsonParser, function (req, res, next) {
-  connection.execute(
-    "SELECT * FROM users WHERE email=?",
-    [req.body.email],
-    function (err, users, fields) {
-      if (err) {
-        res.json({ status: "error", message: err });
-        return;
-      }
-      if (users.length == 0) {
-        res.json({ status: "error", message: "no user found" });
-        return;
-      }
-      // Load hash from your password DB.
-      bcrypt.compare(req.body.password, users[0].password, function (err, isLogin) {
-        if(isLogin){
-          var token = jwt.sign({ email: users[0].email }, secret);
-          res.json({status:'ok',message:'login succes', token})
-        } else {
-          res.json({status:'error',message:'Login failed'})
-        }
+// app.post("/login", jsonParser, function (req, res, next) {
 
-      });
-    }
-  );
-});
+//   connection.execute(
+//     "SELECT * FROM users WHERE email=?",
+//     [req.body.email],
+//     function (err, users, fields) {
+//       if (err) {
+//         res.json({ status: "error", message: err });
+//         return;
+//       }
+//       if (users.length == 0) {
+//         res.json({ status: "error", message: "no user found" });
+//         return;
+//       }
+//       // Load hash from your password DB.
+//       bcrypt.compare(req.body.password, users[0].password, function (err, isLogin) {
+//         if(isLogin){
+//           var token = jwt.sign({ email: users[0].email }, secret);
+//           res.json({status:'ok',message:'login succes', token})
+//         } else {
+//           res.json({status:'error',message:'Login failed'})
+//         }
+//       });
+//     }
+//   );
+// });
 //--------------------------------------------------------------------------------
 
 app.listen(port, () => {
