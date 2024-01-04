@@ -78,8 +78,8 @@ app.post("/register", jsonParser, function (req, res, next) {
     // Store hash in your password DB.
 
     connection.execute(
-      "INSERT INTO users (email, password, fname, lname, number) VALUES (?, ?, ?, ?, ?)",
-      [req.body.email, hash, req.body.fname, req.body.lname,req.body.number],
+      "INSERT INTO users (email, password, fname, lname) VALUES (?, ?, ?, ?)",
+      [req.body.email, hash, req.body.fname, req.body.lname],
       function (err, results, fields) {
         if (err) {
           res.json({ status: "error", message: err });
